@@ -22,7 +22,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/img_person"
+                android:id="@+id/detail_img_person"
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
                 tools:srcCompat="@drawable/img_rick" />

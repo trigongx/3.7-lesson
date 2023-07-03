@@ -8,17 +8,17 @@ import com.bumptech.glide.Glide
 import com.example.a37_lesson.databinding.FragmentMainBinding
 import com.example.a37_lesson.databinding.ItemPersonBinding
 
-class PersonAdapter(val list:ArrayList<Person>,val onClick:(person:Person)->Unit):Adapter<PersonAdapter.ViewHolder>() {
+class PersonAdapter(val list:ArrayList<Person>,val onClick:(position:Int)->Unit):Adapter<PersonAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ItemPersonBinding):RecyclerView.ViewHolder(binding.root){
         fun bind(){
             val item = list[adapterPosition]
             binding.tvName.text = item.name
             binding.tvAlive.text = item.life
-            item.image?.let { binding.imgPerson.loadImage(it) }
+            item.image?.let { binding.detailImgPerson.loadImage(it) }
 
             itemView.setOnClickListener {
-                onClick.invoke(item)
+                onClick(adapterPosition)
             }
         }
     }

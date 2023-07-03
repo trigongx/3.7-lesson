@@ -38,8 +38,8 @@ class MainFragment : Fragment() {
         val adapter = PersonAdapter(personList,this::onClick)
         binding.rvPersons.adapter = adapter
     }
-    private fun onClick(person: Person){
-        findNavController().navigate(MainFragmentDirections.actionFirstFragmentToDetailFragment(person))
+    private fun onClick(position:Int){
+        findNavController().navigate(R.id.detailFragment, bundleOf("TRIGON" to personList[position]) )
     }
 
 }

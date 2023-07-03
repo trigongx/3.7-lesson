@@ -5,12 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.example.a37_lesson.databinding.FragmentDetailBinding
 
 class DetailFragment : Fragment() {
 
     private lateinit var binding:FragmentDetailBinding
-    private lateinit var navArgs:DetailFragmentArgs
+    private lateinit var dataFromMainFragment:Person
 
 
     override fun onCreateView(
@@ -23,12 +24,13 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        arguments?.let {
-            navArgs = DetailFragmentArgs.fromBundle(it)
+        dataFromMainFragment = arguments?.getSerializable("TRIGON") as Person
+        binding.apply {
+            tvName.text = dataFromMainFragment.name
+            tvAlive.text = dataFromMainFragment.name
+            dataFromMainFragment.image?.let { imgPerson.loadImage(it) }
         }
-        binding.tvName.text = navArgs.person.name
-        binding.tvAlive.text = navArgs.person.life
-        navArgs.person.image?.let { binding.imgPerson.loadImage(it) }
+
     }
 
 }
