@@ -23,8 +23,6 @@ class MainFragment : Fragment() {
     )
 
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,8 +36,8 @@ class MainFragment : Fragment() {
         val adapter = PersonAdapter(personList,this::onClick)
         binding.rvPersons.adapter = adapter
     }
-    private fun onClick(position:Int){
-        findNavController().navigate(R.id.detailFragment, bundleOf("TRIGON" to personList[position]) )
+    private fun onClick(person: Person){
+        findNavController().navigate(MainFragmentDirections.actionMainFragmentToDetailFragment(person))
     }
 
 }

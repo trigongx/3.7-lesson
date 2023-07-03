@@ -11,7 +11,7 @@ import com.example.a37_lesson.databinding.FragmentDetailBinding
 class DetailFragment : Fragment() {
 
     private lateinit var binding:FragmentDetailBinding
-    private lateinit var dataFromMainFragment:Person
+    private lateinit var navArgs: DetailFragmentArgs
 
 
     override fun onCreateView(
@@ -24,13 +24,14 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        dataFromMainFragment = arguments?.getSerializable("TRIGON") as Person
-        binding.apply {
-            tvName.text = dataFromMainFragment.name
-            tvAlive.text = dataFromMainFragment.name
-            dataFromMainFragment.image?.let { imgPerson.loadImage(it) }
+        arguments?.let {
+            navArgs =DetailFragmentArgs.fromBundle(it)
+        }
+        binding.tvName.text = navArgs.person.name
+        binding.tvAlive.text = navArgs.person.life
+        navArgs.person.image?.let { binding.imgPerson.loadImage(it) }
+
         }
 
     }
 
-}
